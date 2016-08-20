@@ -1,11 +1,1 @@
-window.onload=function(){
-	var yonghu=document.querySelector('input[type=text]')
-	var tankuang=document.getElementsByClassName('alert')[0];
-	yonghu.oninput=function(){
-		if(yonghu.value==''){
-			tankuang.className="alert alert-warning";
-		}else{
-			tankuang.className="alert alert-warning hidden";
-		}
-	}
-}
+window.onload=function(){var e=document.querySelector("input[type=text]"),n=document.getElementsByClassName("alert")[0];e.oninput=function(){""==e.value?n.className="alert alert-warning":n.className="alert alert-warning hidden"}};
