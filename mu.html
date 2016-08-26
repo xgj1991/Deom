@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 390px;
+				margin: 30px auto;
+			}
+			#list li{
+				width:350px;
+				padding: 0 20px;
+				height: 30px;
+				line-height: 30px;
+				margin-bottom: 1px;
+				list-style: none;
+			}
+			#list li span{
+				display: inline-block;
+				width: 160px;
+			}
+			#selectAll{
+				margin-left: 20px;
+			}
+			.c1{
+				background: #ccc;
+			}
+			.c2{
+				background: #71E5EA;
+			}
+			.c3{	/*鼠标移上去的颜色*/
+				background: #B973B0;
+			}
+			.c4{	/*点中后的颜色*/
+				background: #FF0000;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var list=document.getElementById("list");
+				var lis=list.querySelectorAll('li');
+				var checks=list.querySelectorAll('input');
+				var selectAll=document.getElementById("selectAll");
+				var clickNum=0;
+				
+				for (var i=0;i<lis.length;i++) {
+					checks[i].index=i;
+					lis[i].index=i;
+					//根据i%2的值，可以做出来隔行换色
+					if(i%2==0){
+						lis[i].className='c1';
+						lis[i].bg='c1';
+					}else{
+						lis[i].className='c2';
+						lis[i].bg='c2';
+					}
+					
+					lis[i].onmouseover=function(){
+						/*
+						 * 鼠标移上去的时候
+						 * 	1、checkbox是选中的状态
+						 * 		当前li的颜色设为高亮
+						 * 	2、未选中的状态
+						 *		当前li的颜色设为c3
+						 *		
+						 */
+						
+						if(checks[this.index].checked==true){
+							this.className='c4';
+						}else{
+							this.className='c3';
+						}
+					};
+					
+					lis[i].onmouseout=function(){
+						/*
+						 * 鼠标移开的时候
+						 * 	1、checkbox是选中的状态
+						 * 		当前li的颜色设为高亮
+						 * 	2、未选中的状态
+						 *		当前li的颜色设为初始值
+						 *		
+						 */
+						
+						if(checks[this.index].checked==true){
+							//选中的状态，颜色要变为高亮
+							this.className='c4';
+						}else{
+							//未选中的状态，颜色变为初始值
+							this.className=this.bg;
+						}
+						
+					};
+					
+					
+					//checks点击
+					checks[i].onclick=function(){
+						/*
+						 * 点击的时候要做事情
+						 * 	1、选中的时候
+						 * 		当前li的颜色设为高亮
+						 * 	2、取消的时候
+						 * 		当前li的颜色设为初始值
+						 * 
+						 * 
+						 * html标签中，选中状态是checked,在js中它的选中状态用true表示，没有选中用false表示
+						 */
+						
+						//console.log(this.checked);
+						
+						if(this.checked==true){
+							clickNum++;
+							lis[this.index].className='c4';
+						}else{
+							clickNum--;
+							lis[this.index].className='c3';
+						}
+						
+						if(clickNum==lis.length){
+							selectAll.checked=true;
+						}else{
+							selectAll.checked=false;
+						}
+						
+						//console.log('checkbox点击的时候',clickNum);
+					};
+				}
+				
+				selectAll.onclick=function(){
+					for(var i=0;i<checks.length;i++){
+						checks[i].checked=this.checked;
+						
+						if(this.checked==true){
+							//选中的状态，颜色要变为高亮
+							lis[i].className='c4';
+							clickNum=lis.length;
+						}else{
+							//未选中的状态，颜色变为初始值
+							lis[i].className=lis[i].bg;
+							clickNum=0;
+						}
+					}
+					
+					//console.log('全选点击的时候',clickNum);
+					
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li>
+					<input type="checkbox" />
+					<span>私奔</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>北京北京</span>
+					<span>梁博、黄勇</span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>我爱你中国</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>花火</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>回来</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>爱要有你才完美</span>
+					<span>梁博、那英</span>
+				</li>
+			</ul>
+			<input type="checkbox" id="selectAll" value="" /> 全选
+		</div>
+	</body>
+</html>
