@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body { background: #f1f1f1; }
+			button { font-size:30px; color:gray; padding:0px 10px; box-shadow:3px 3px 13px rgba(0,0,0,0.1); }
+			button:nth-of-type(2) { margin-right: 40px; }
+			div { position: absolute; top: 50px; left: 100px; font: 20px/30px 'arial'; color:#666; }
+			li { list-style: none; padding-left: 40px; }
+			strong { display: inline-block; width: 40px; text-align: center; }
+			em { margin-right: 40px; }
+			em, span { font-size: 30px; }
+			p { border-top:1px solid #999; padding-top: 15px; margin-top:15px ; }
+		</style>
+		<script>
+			window.onload=function(){
+				var buy=document.getElementById("buy");
+				var lis=document.getElementsByTagName('li');
+				var p=buy.getElementsByTagName('p')[0];
+				
+				for(var i=0;i<lis.length;i++){
+					count(lis[i]);
+				}
+				
+				//计数函数
+				function count(li){
+					/*
+					 * 参数为每个li，用每个li去获取到它里面的元素
+					 * 
+					 * btns		+与-按钮元素
+					 * strong	买了几个元素
+					 * span		小计元素
+					 * em		单价元素
+					 */
+					//获取到+与-按钮
+					var btns=li.getElementsByTagName('button');
+					var strong=li.getElementsByTagName('strong')[0];
+					var span=li.getElementsByTagName('span')[0];
+					var em=li.getElementsByTagName('em')[0];
+					var buyNum=0;	//买了商品的个数	
+					
+					//减按钮点击事件
+					btns[0].onclick=function(){
+						buyNum--;
+						if(buyNum<0){
+							buyNum=0;
+						}
+						
+						/*
+						 * 买了商品的个数算出来后给strong赋值
+						 * 小计：
+						 * 	用购买的数量*单价就是小计
+						 * 
+						 * 		获取到的单价是字符串，与数字相乘需要转成数字
+						 */
+						strong.innerHTML=buyNum;
+						span.innerHTML=parseFloat(em.innerHTML)*buyNum+'元';
+						sum();
+					};
+					
+					//加按钮点击事件
+					btns[1].onclick=function(){
+						buyNum++;
+						
+						/*
+						 * 买了商品的个数算出来后给strong赋值
+						 * 小计：
+						 * 	用购买的数量*单价就是小计
+						 * 
+						 * 		获取到的单价是字符串，与数字相乘需要转成数字
+						 */
+						strong.innerHTML=buyNum;
+						span.innerHTML=parseFloat(em.innerHTML)*buyNum+'元';
+						
+						sum();
+					};
+				}
+				
+				//求和函数
+				function sum(){
+					/*
+					 * 求和的函数需要把所有的数字加起来，所以要用到for循环
+					 * buyNumber	购买商品的数量
+					 * 		声明一个变量，把所有的购买过的数字累加起来
+					 * 
+					 * subtotal		合计
+					 * 		声明一个变量，把所有的小计累加起来		
+					 * 
+					 * expensive	最贵的
+					 * 		取一个最小值，让每个购买的数字与它相比，如果比它大就把这个值更新一下，这个就能取出最大值
+					 */
+					var buyNumber=0;
+					var subtotal=0;
+					var expensive=0;
+					
+					
+					for(var i=0;i<lis.length;i++){
+						var strongInner=lis[i].getElementsByTagName('strong')[0].innerHTML;
+						var spanInner=lis[i].getElementsByTagName('span')[0].innerHTML;
+						var emInner=lis[i].getElementsByTagName('em')[0].innerHTML;
+						
+						buyNumber+=Number(strongInner);
+						subtotal+=parseFloat(spanInner);
+						
+						
+						/*
+						 * 最贵商品的单价只能对比已购买的商品
+						 * strongInner为每个商品的购买数量，如果它大于0说明这个商品是购买的，只有购买的商品才能去算最大单价。
+						 * 购买一个商品后让它的单价与0对比，如果大于0就把expensive的值更新为它的单价，下一次点击的时候，对比的是上一个已选的单价。循环对比就能算出最大的值
+						 * 
+						 * strongInner为字符串，需要把它转换成数字
+						 */
+						if(Number(strongInner)>0){
+							//console.log('成立');
+							console.log(parseFloat(emInner));
+							
+							if(parseFloat(emInner)>expensive){
+								expensive=parseFloat(emInner);
+							}
+						}
+					}
+					
+					p.innerHTML='共购买了 <strong>'+buyNumber+'</strong> 件商品，单价最贵是：<strong>'+expensive+'</strong>元，合计 <strong>'+subtotal+'</strong> 元；';
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="buy">
+			<ul>
+				<li>
+					<button>-</button>
+					<strong>0</strong>
+					<button>+</button>
+					单价：<em>34元</em>
+					小计：<span>0元</span>
+				</li>
+				<li>
+					<button>-</button>
+					<strong>0</strong>
+					<button>+</button>
+					单价：<em>24元</em>
+					小计：<span>0元</span>
+				</li>
+				<li>
+					<button>-</button>
+					<strong>0</strong>
+					<button>+</button>
+					单价：<em>10元</em>
+					小计：<span>0元</span>
+				</li>
+				<li>
+					<button>-</button>
+					<strong>0</strong>
+					<button>+</button>
+					单价：<em>1.5元</em>
+					小计：<span>0元</span>
+				</li>
+			</ul>
+			<p>
+				共购买了 <strong>0</strong> 件商品，单价最贵是：<strong>0</strong>元，合计 <strong>0</strong> 元；
+			</p>
+		</div>
+	</body>
+</html>
