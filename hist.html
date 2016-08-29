@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/*
+			 * 
+			 */
+			
+			window.onload=function(){
+				var year=document.getElementById("year");
+				var month=document.getElementById("month");
+				var date=document.getElementById("date");
+				var d=new Date();
+				var oldD=new Date();
+				var week=document.getElementById('week');
+				
+				/*
+				 * 要想让某一个option显示为默认，就给它的option标签里添加一个selected
+				 */
+				//一上来生成年份
+				var yearHtml='';
+				for(var i=2030;i>=1970;i--){
+					//如果这个条件成立，说明循环的的i与现在的年份是相等的，我们要让它选中，不成立就不选中
+					if(i==d.getFullYear()){
+						yearHtml+='<option selected>'+i+'</option>';
+					}else{
+						yearHtml+='<option>'+i+'</option>';
+					}
+				}
+				
+				year.innerHTML=yearHtml;
+				
+				
+				//一上来生成月份
+				var monthHtml='';
+				for(var i=12;i>=1;i--){
+					//如果这个条件成立，说明循环的的i与现在的月份是相等的，我们要让它选中，不成立就不选中
+					if(i==d.getMonth()+1){
+						monthHtml+='<option selected>'+format(i)+'</option>';
+					}else{
+						monthHtml+='<option>'+format(i)+'</option>';
+					}
+					
+				}
+				month.innerHTML=monthHtml;
+				
+				
+				//当年份变化的时候去调用showDate函数
+				//onchange事件只会发生在内容有变化的时候，不管有没有点击，只要内容发生变化就会触发这个事件
+				year.onchange=function(){
+					showDate();
+				};
+				
+				//当年份变化的时候去调用showDate函数
+				month.onchange=function(){
+					showDate();
+				};
+				
+				//当日期变化的时候
+				date.onchange=function(){
+					//showDate();
+					/*
+					 * 这里不能直接去调用 showDate，因为showDate里面是生成日期，直接调用的话，它会再重新生成一下日期，把默认的天数设为今天，所以返回的永远都是今天
+					 */
+					
+					
+					d.setFullYear(year.value);
+					d.setMonth(month.value-1);
+					d.setDate(date.value);
+					
+					week.innerHTML=' 星期'+formatWeek(d.getDay());
+				};
+				
+				
+				
+				showDate();
+				function showDate(){
+					/*
+					 * 要取到select里选中的内容，用元素.value
+					 */
+					//首先要设置年份
+					d.setFullYear(year.value);
+					
+					//设置月份
+					/*
+					 * 要知道这个月有多少天
+					 * 	首先可以设置成下个月，然后用setDate(0)设置日期，这个时候会自动跳到上个月的最后一天
+					 */
+					/*d.setMonth(month.value);	//直接写value值的话取到的是下个月的日期
+					d.setDate(0);*/
+					
+					d.setMonth(month.value,0);
+					
+					/*
+					 *	7	设置8月		7.31
+					 * 	8	9.31	10	9
+					 * 
+					 * 
+					 */
+					
+					
+					var totalDays=d.getDate();
+					
+					console.log(totalDays);
+					
+					var dayHtmls='';
+					for(var i=totalDays;i>=1;i--){
+						/*
+						 * 因为d在上面已经被改过了，所以它的日期是不准确的，不能用它去获取今天的日期。所以在上面又声明了一个新的日期对象，用它去获取今天的日期
+						 */
+						if(i==oldD.getDate()){
+							dayHtmls+='<option selected>'+format(i)+'</option>';
+						}else{
+							dayHtmls+='<option>'+format(i)+'</option>';
+						}
+					}
+					
+					date.innerHTML=dayHtmls;
+					
+					
+					
+					/*
+					 * 想知道某天是星期几，首先需要它是哪一年，哪个月，哪一天才能知道那是星期几
+					 * 所以，想要设置日期，就需要先设置年份，再设置月份，再设置日期之后用getDay就能取到日期对应的星期
+					 * 
+					 */
+					
+					
+					//d.setFullYear(year.value);
+					//d.setMonth(month.value-1);
+					d.setDate(date.value);
+					
+					//console.log(d.getDay());
+					week.innerHTML=' 星期'+formatWeek(d.getDay());
+				}
+				
+				
+				
+				
+				
+				
+				
+				function format(v){
+					return v<10?'0'+v:''+v;
+				}
+				function formatWeek(v){
+					return ['日','一','二','三','四','五','六'][v]
+				}
+				
+				//http://www.00cf.com/quweiyoumo/201109/21-8928.html
+			};
+		</script>
+	</head>
+	<body>
+		<select id="year"></select>年
+		<select id="month"></select>月
+		<select id="date"></select>日
+		<span id="week"></span>
+	</body>
+</html>
