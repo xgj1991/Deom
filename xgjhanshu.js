@@ -166,7 +166,7 @@ function xgjyd(xgjy,xgjl1,xgjl2,xgjt,xgjt1){
  * xgjt:往左或往右运动一次所需时间
  * xgjt1:往返一次的时间，必须大于或等于两倍的xgjt
  * xgjys:单位
- * xgjfw:运动的方向
+ * xgjfw:运动的方向.
  * */
 function xgjyd(obje){
 	var settings={
