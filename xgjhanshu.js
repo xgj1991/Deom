@@ -44,7 +44,7 @@ function xgjsf(obje){
  * slideWarp:滚动条（获取的元素）
  * slide:滑动的块(不需要设置高度，需要有相对于滚动条的定位)
  * text:文本(有overflow：hidden的那一项)
- * textCon:文本内容(需要有相对于文本的内容)
+ * textCon: 文本内容(需要有相对于文本的内容)
  * */
 function xgjscro(slideWarp,slide,text,textCon){
 	var t=0;	//滚动条的top值
