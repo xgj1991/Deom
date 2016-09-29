@@ -11,7 +11,7 @@ max：缩放的最大值；
 sca:最初的缩放值；
 obj：缩放的对象；
 time：每次缩放的时间间隔；
-onoff：第一次是缩小还是放大；	
+onoff：第一次是缩小还是放大 ；	
 }*/
 function xgjsf(obje){
 	var settings={
@@ -261,7 +261,7 @@ function xgjMove(obj,t1,t2){
  * dh2:animat.css上的动画名字,数据类型为字符串;
  * time1:第一次动画出现的时间；
  * time2:每次动画的间隔时间;
- * na1:定时器的名字,数据类型为字符串,需要在函数前定义一个名为xgjtime和xgjtime1的obj如var xgjtime={t1:null,t2=null}；xgjtime1={t1:null,t2=null}；（xgjtime和xgjtime1的key名字必须一样）
+ * na1:定时器的名字,数据类型为字符串,需要在函数前定义一个名为xgjtime和xgjtime1的obj如var xgjtime={t1:null,t2:null}；xgjtime1={t1:null,t2:null}；（xgjtime和xgjtime1的key名字必须一样）
  * shu显示的动画在第几页
  * */
 
