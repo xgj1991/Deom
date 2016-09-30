@@ -39,7 +39,7 @@ function xgjsf(obje){
 	},settings.time)
 }
 
-//自定义滚动条（兼容ie8不需要jq）
+//自定义滚动条（兼容ie8不需要jq ）
 /*
  * slideWarp:滚动条（获取的元素）
  * slide:滑动的块(不需要设置高度，需要有相对于滚动条的定位)
