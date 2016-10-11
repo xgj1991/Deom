@@ -9,7 +9,7 @@ if(navigator.userAgent.indexOf('MSIE 8.0') !== -1||navigator.userAgent.indexOf('
 min：缩放的最小值；
 max：缩放的最大值；
 sca:最初的缩放值；
-obj：缩放的对象；
+obj：缩放的对象 ；
 time：每次缩放的时间间隔；
 onoff：第一次是缩小还是放大 ；	
 }*/
