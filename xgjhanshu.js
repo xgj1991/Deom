@@ -19,7 +19,7 @@ function xgjsf(obje){
 		max:obje.max||1,
 		sca:obje.sca||1,
 		obj:obje.obj, 
-		time:obje.time||16,
+		time:obje.time||16, 
 		onoff:obje.onoff||true
 		}
 	setInterval(function(){
