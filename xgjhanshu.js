@@ -1,5 +1,5 @@
 //判断浏览器是不是ie8或ie9
-if(navigator.userAgent.indexOf('MSIE 8.0') !== -1||navigator.userAgent.indexOf('MSIE 9.0')!==-1)
+if(navigator.userAgent.indexOf('MSIE 8.0') !== -1||navigator.userAgent.indexOf('MSIE 9.0')!==-1) 
 
 
 
