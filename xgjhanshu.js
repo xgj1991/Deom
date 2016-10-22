@@ -22,7 +22,7 @@ function xgjsf(obje){
 		time:obje.time||16, 
 		onoff:obje.onoff||true
 		}
-	setInterval(function(){
+	setInterval(function(){ 
 		if(settings.onoff){
 			settings.sca=settings.sca-0.005;
 			settings.obj.style['-ms-transform']='scale('+settings.sca+')';
