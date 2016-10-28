@@ -13,7 +13,7 @@ obj：缩放的对象 ；
 time：每次缩放的时间间隔 ；
 onoff：第一次是缩小还是放大  ；	
 }*/
-function xgjsf(obje){
+function xgjsf(obje){ 
 	var settings={
 		min:obje.min||0.8,
 		max:obje.max||1,
