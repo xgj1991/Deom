@@ -12,10 +12,10 @@ sca:最初的缩放值；
 obj：缩放的对象 ； 
 time：每次缩放的时间间隔 ；
 onoff：第一次是缩小还是放大  ；	
-}*/
+}*/ 
 function xgjsf(obje){ 
 	var settings={
-		min:obje.min||0.8,
+		min:obje.min||0.8, 
 		max:obje.max||1,
 		sca:obje.sca||1,
 		obj:obje.obj, 
