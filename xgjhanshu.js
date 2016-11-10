@@ -14,7 +14,7 @@ time：每次缩放的时间间隔 ；
 onoff：第一次是缩小还是放大  ；	  
 }*/ 
 function xgjsf(obje){ 
-	var settings={
+	var settings={ 
 		min:obje.min||0.8, 
 		max:obje.max||1, 
 		sca:obje.sca||1,
