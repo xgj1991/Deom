@@ -18,7 +18,7 @@ function xgjsf(obje){
 		min:obje.min||0.8,
 		max:obje.max||1,
 		sca:obje.sca||1, 
-		obj:obje.obj,
+		obj:obje.obj, 
 		time:obje.time||16,  
 		onoff:obje.onoff||true
 		}
