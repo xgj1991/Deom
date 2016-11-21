@@ -3,7 +3,6 @@ if(navigator.userAgent.indexOf('MSIE 8.0') !== -1||navigator.userAgent.indexOf('
 
 
 
-
 //缩放（只兼容ie9不兼容ie8）
 /*{
 min：缩放的最小值； 
